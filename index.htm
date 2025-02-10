@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      .container {
+        text-align: center; 
+        display: flex;
+        justify-content: center;
+        align-items: top;
+        width: 30%;
+        height: 70vh;
+        background-color: rgb(72, 16, 94);
+        padding: 10px;
+        overflow:  auto;
+        border-radius: 20px;
+      }
+      input{
+         padding: 8px  30px;
+         font-size: 22px;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+      .list {
+        list-style: none;
+        padding: 0;
+      }
+      button{
+        background-color: #fff;
+        color: black;
+        border: none;
+        border-radius: 1px;
+        padding: 8px 10px;
+      }
+      button:hover{
+        background-color: rgb(72, 16, 94) ;
+        color: #fff;
+        border: 1px solid #fff;
+        
+      }
+      .list li {
+        display: flex;
+        justify-content: space-around;
+        margin: 5px 0;
+        padding: 4px;
+        font-size: 18px;
+        border-radius: 20px;
+        background-color: #fff;
+
+        button{
+            border: 0;
+            background-color: rgb(72, 16, 94);
+            color: #fff;
+            transition: 0.4s;
+           
+        }
+
+        button:hover{
+            color: black;
+            background-color: #fff;
+            border: 1px solid rgb(72, 16, 94);
+        }
+         
+        span{
+            overflow: hidden;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo">
+        <input type="text" id="taskInput" />
+        <button onclick="addList()">ADD</button>
+        <ul class="list" id="taskList"></ul>
+        <button onclick="delAll()">Delete All</button>
+      </div>
+    </div>
+
+    <script>
+      function addList() {
+        let input = document.getElementById("taskInput");
+        let task = input.value.trim();
+        if (task === "") return;
+
+        const list = document.getElementById("taskList");
+        let li = `<li class='list'> 
+                        <span>${task}</span> 
+                        <button onclick="remove(this)">Remove</button>
+                      </li>`;
+        list.innerHTML += li;
+        input.value = "";
+      }
+
+      function remove(button) {
+        button.parentElement.remove();
+      }
+
+      function delAll() {
+        document.getElementById("taskList").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
